@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e69d947b45e0bb84db9006eb87b3a58e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dataBase: {fileID: 11400000, guid: 6a21dcfe3277203459e7008a8dca2a3c, type: 2}
+  - achievementNotificationController: {instanceID: 0}
+  - achievementItemPrefab: {fileID: 4299670094901433289, guid: dcf4c65b1f9e5ce478bcf76aaffc9444, type: 3}
+  - content: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

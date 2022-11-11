@@ -368,9 +368,11 @@ GameObject:
   - component: {fileID: 1766844560934434717}
   - component: {fileID: 1766844560934434718}
   - component: {fileID: 1766844560934434716}
-  - component: {fileID: 1766844560934434719}
   - component: {fileID: 1766844560934434725}
   - component: {fileID: 1766844560934434727}
+  - component: {fileID: 2726726336815475651}
+  - component: {fileID: 1766844560934434719}
+  - component: {fileID: 7098604531075275760}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -603,7 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 2
-    maxHealth: 10
+    maxHealth: 25
     speed: 5
     attackConfig: {fileID: 11400000, guid: 0ee21540de5e3614d8c83a5bda429bec, type: 2}
 --- !u!114 &2129650104
@@ -687,31 +689,6 @@ MonoBehaviour:
     particleSystem: {fileID: 0}
     soundEffect: {fileID: 8300000, guid: 596832cd88648a544a225bfa557d23f8, type: 3}
     screenShake: 1
---- !u!114 &1766844560934434719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766844560934434728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 377df98bde7799f48adfefb534708c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthChangeDelay: 0.5
-  onDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  onInvincibilityEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1766844560934434725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +711,67 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae62162626f244488af6aff00addad84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2726726336815475651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766844560934434728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2da6d6552ece34d8a2c92a38459158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766844560934434719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766844560934434728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377df98bde7799f48adfefb534708c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2726726336815475651}
+        m_TargetAssemblyTypeName: TopDownCharacter2D.Health.DisappearOnDeath, Assembly-CSharp
+        m_MethodName: OnPlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onInvincibilityEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7098604531075275760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766844560934434728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2da6d6552ece34d8a2c92a38459158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1766844560953468153
@@ -5568,7 +5606,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

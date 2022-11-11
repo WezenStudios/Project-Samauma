@@ -8,7 +8,7 @@ namespace TopDownCharacter2D.Controllers
     /// </summary>
     public class TopDownContactEnemyController : TopDownEnemyController
     {
-        [SerializeField] [Range(0f, 100f)] private float followRange;
+        [SerializeField] [Range(0f, 300f)] private float followRange;
 
         protected override void FixedUpdate()
         {
