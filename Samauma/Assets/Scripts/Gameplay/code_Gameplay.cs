@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class code_Gameplay : MonoBehaviour
 {
@@ -18,9 +19,7 @@ public class code_Gameplay : MonoBehaviour
 
     AchievementManager achievementManager;
 
-    [Header("Listas:")]
     public Wave[] waves;
-    public Transform[] spawnPoints;
 
     [Header("Textos:")]
     public TMP_Text killsCounter;
@@ -40,6 +39,7 @@ public class code_Gameplay : MonoBehaviour
     [Header("Contadores:")]
     public float timeBetweenWaves = 3f;
     public float waveCountdown;
+    public float gameTimeCount;
     public int kills = 0;
     public SpawnState state = SpawnState.COUNTING;
 
@@ -55,17 +55,18 @@ public class code_Gameplay : MonoBehaviour
     {
         achievementManager = GameObject.Find("Achievement Manager").GetComponent<AchievementManager>();
 
-        if (spawnPoints.Length == 0)
-        {
-            Debug.LogError("No spawn points referenced.");
-        }
-
         waveCountdown = timeBetweenWaves;
     }
 
     private void Update()
     {
+        gameTimeCount = gameTimeCount + Time.deltaTime;
+
         if (hudHowToPlay.activeInHierarchy)
+        {
+            Time.timeScale = 0;
+        }
+        else if (hudPause.activeInHierarchy)
         {
             Time.timeScale = 0;
         }
@@ -74,18 +75,20 @@ public class code_Gameplay : MonoBehaviour
             Time.timeScale = 1;
         }
 
+
         if (state == SpawnState.FINISHED)
         {
-            hudVictory.SetActive(true);
-
-            if (hudVictory.activeInHierarchy)
+            if (gameTimeCount <= 1200f)
             {
-                Time.timeScale = 0;
+                achievementManager.achievementsToShow = Achievements.A1;
+                achievementManager.UnlockAchievement(Achievements.A1);
             }
             else
             {
-                Time.timeScale = 1;
+                gameTimeCount = 0f;
             }
+
+            hudVictory.SetActive(true);
         }
 
         if (state == SpawnState.WAITING)
@@ -151,15 +154,40 @@ public class code_Gameplay : MonoBehaviour
         state = SpawnState.SPAWNING;
         waveCounter.text = _wave.name;
 
-        if (_wave.name == "2" || _wave.name == "4")
+        if (_wave.name == "1")
+        {
+            SpawnHeal();
+        }
+
+        if (_wave.name == "2")
         {
             SpawnUpgrade();
 
             SpawnHeal();
             SpawnHeal();
         }
-        else
+
+        if (_wave.name == "3")
         {
+            SpawnHeal();
+            SpawnHeal();
+            SpawnHeal();
+        }
+
+        if (_wave.name == "4")
+        {
+            SpawnUpgrade();
+
+            SpawnHeal();
+            SpawnHeal();
+            SpawnHeal();
+            SpawnHeal();
+        }
+
+        if (_wave.name == "5")
+        {
+            SpawnHeal();
+            SpawnHeal();
             SpawnHeal();
             SpawnHeal();
             SpawnHeal();
@@ -178,20 +206,26 @@ public class code_Gameplay : MonoBehaviour
 
     void SpawnEnemy(Transform _enemy)
     {
-        Transform _spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_enemy, _spawnPoint.position, Quaternion.identity);
+        Instantiate(_enemy, (Vector2)transform.position +
+            new Vector2(Random.Range(-transform.localScale.x,
+            transform.localScale.x + 1), Random.Range(-transform.localScale.y,
+            transform.localScale.y + 1)) / 2, Quaternion.identity);
     }
 
     void SpawnHeal()
     {
-        Transform _spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(healObject, _spawnPoint.position, Quaternion.identity);
+        Instantiate(healObject, (Vector2)transform.position +
+            new Vector2(Random.Range(-transform.localScale.x,
+            transform.localScale.x + 1), Random.Range(-transform.localScale.y,
+            transform.localScale.y + 1)) / 2, Quaternion.identity);
     }
 
     void SpawnUpgrade()
     {
-        Vector3 _spawnUpgrade = new Vector3(0, 0, 0);
-        Instantiate(upgradeObject, _spawnUpgrade, Quaternion.identity);
+        Instantiate(upgradeObject, (Vector2)transform.position +
+            new Vector2(Random.Range(-transform.localScale.x,
+            transform.localScale.x + 1), Random.Range(-transform.localScale.y,
+            transform.localScale.y + 1)) / 2, Quaternion.identity);
     }
 
     public void KillCounter()
@@ -200,14 +234,17 @@ public class code_Gameplay : MonoBehaviour
 
         if (kills == 1)
         {
+            achievementManager.achievementsToShow = Achievements.A2;
             achievementManager.UnlockAchievement(Achievements.A2);
         }
-        else if (kills == 75)
+        else if (kills == 200)
         {
+            achievementManager.achievementsToShow = Achievements.A3;
             achievementManager.UnlockAchievement(Achievements.A3);
         }
-        else if (kills == 150)
+        else if (kills == 399)
         {
+            achievementManager.achievementsToShow = Achievements.A4;
             achievementManager.UnlockAchievement(Achievements.A4);
         }
         else

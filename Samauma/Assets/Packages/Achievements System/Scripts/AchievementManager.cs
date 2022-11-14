@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class AchievementManager : MonoBehaviour
@@ -50,6 +51,11 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+    public void UnlockAchievement()
+    {
+        UnlockAchievement(achievementsToShow);
+    }
+
     public void UnlockAchievement(Achievements achievement)
     {
         AchievementItemController item = achievementItems[(int)achievement];
@@ -62,19 +68,5 @@ public class AchievementManager : MonoBehaviour
         PlayerPrefs.SetInt(item.achievement.id, 1);
         item.unlocked = true;
         item.RefreshView();
-    }
-
-    public void LockAllAchievements()
-    {
-        foreach (Achievement achievement in dataBase.achievements)
-        {
-            PlayerPrefs.DeleteKey(achievement.id);
-        }
-
-        foreach (AchievementItemController controller in achievementItems)
-        {
-            controller.unlocked = false;
-            controller.RefreshView();
-        }
     }
 }

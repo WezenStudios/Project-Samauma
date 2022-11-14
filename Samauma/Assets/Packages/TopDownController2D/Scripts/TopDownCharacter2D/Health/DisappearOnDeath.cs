@@ -9,10 +9,12 @@ namespace TopDownCharacter2D.Health
     public class DisappearOnDeath : MonoBehaviour
     {
         code_Gameplay gameplay;
+        AchievementManager achievementManager;
 
         private void Start()
         {
             gameplay = GameObject.Find("Gameplay Manager").GetComponent<code_Gameplay>();
+            achievementManager = GameObject.Find("Achievement Manager").GetComponent<AchievementManager>();
         }
 
         public void OnDeath()
@@ -56,6 +58,10 @@ namespace TopDownCharacter2D.Health
             }
 
             Destroy(gameObject, 20f);
+
+            achievementManager.achievementsToShow = Achievements.A0;
+            achievementManager.UnlockAchievement(Achievements.A0);
+
             gameplay.hudDefeat.SetActive(true);
 
             if (gameplay.hudDefeat.activeInHierarchy)

@@ -15,17 +15,17 @@ MonoBehaviour:
   achievements:
     array:
     - id: A0
-      title: Desafiando a Morte!
-      description: Finalize sem coletar vidas e melhorias.
+      title: Desafiando a morte...
+      description: Morra durante a jornada...
     - id: A1
-      title: "O Intoc\xE1vel!"
-      description: Complete o jogo sem levar dano!
+      title: Contra o tempo!
+      description: Complete o jogo em menos de 20 minutos.
     - id: A2
-      title: "Que Come\xE7e a Luta!"
+      title: Podem vir seus feiosos.
       description: Neutralize o primeiro inimigo.
     - id: A3
-      title: "Quase L\xE1!"
-      description: Neutralize um total de 75 inimigos.
+      title: "Quase l\xE1, na metade eu diria!"
+      description: Neutralize um total de 200 inimigos.
     - id: A4
-      title: Especialista em Combate!
-      description: Neutralize um total de 150 inimigos.
+      title: Quando isso vai acabar!?
+      description: Neutralize um total de 399 inimigos.

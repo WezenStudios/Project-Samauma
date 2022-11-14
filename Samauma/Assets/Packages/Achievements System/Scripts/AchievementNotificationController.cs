@@ -7,7 +7,6 @@ using TMPro;
 public class AchievementNotificationController : MonoBehaviour
 {
     [SerializeField] TMP_Text achievementTitle;
-
     Animator anim;
 
     void Awake()

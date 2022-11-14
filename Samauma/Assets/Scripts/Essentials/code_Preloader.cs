@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
-using UnityEngine.Audio;
 
 public class code_Preloader : MonoBehaviour
 {
-    [SerializeField] int SceneID;
-    [SerializeField] AudioSource logoAudio;
-   
     CanvasGroup fadeGroup;
     float loadTime, minLogoTime = 3f;
 
@@ -30,8 +23,6 @@ public class code_Preloader : MonoBehaviour
         {
             loadTime = Time.time;
         }
-
-        logoAudio.Play();
     }
 
     void Update()
@@ -48,7 +39,7 @@ public class code_Preloader : MonoBehaviour
             fadeGroup.alpha = Time.time - minLogoTime;
             if(fadeGroup.alpha >= 1)
             {
-                SceneManager.LoadScene(SceneID);
+                SceneManager.LoadScene(1);
             }
         }
     }
