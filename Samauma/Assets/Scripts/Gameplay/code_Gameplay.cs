@@ -29,6 +29,10 @@ public class code_Gameplay : MonoBehaviour
     public GameObject healObject;
     public GameObject upgradeObject;
 
+    [Header("Bosses:")]
+    public GameObject bossMelee;
+    public GameObject bossRanged;
+
     [Header("Telas:")]
     public GameObject hudPlayer;
     public GameObject hudDefeat;
@@ -169,6 +173,8 @@ public class code_Gameplay : MonoBehaviour
 
         if (_wave.name == "3")
         {
+            SpawnBossMelee();
+
             SpawnHeal();
             SpawnHeal();
             SpawnHeal();
@@ -176,6 +182,8 @@ public class code_Gameplay : MonoBehaviour
 
         if (_wave.name == "4")
         {
+            SpawnBossRanged();
+
             SpawnUpgrade();
 
             SpawnHeal();
@@ -186,6 +194,9 @@ public class code_Gameplay : MonoBehaviour
 
         if (_wave.name == "5")
         {
+            SpawnBossMelee();
+            SpawnBossRanged();
+
             SpawnHeal();
             SpawnHeal();
             SpawnHeal();
@@ -223,6 +234,22 @@ public class code_Gameplay : MonoBehaviour
     void SpawnUpgrade()
     {
         Instantiate(upgradeObject, (Vector2)transform.position +
+            new Vector2(Random.Range(-transform.localScale.x,
+            transform.localScale.x + 1), Random.Range(-transform.localScale.y,
+            transform.localScale.y + 1)) / 2, Quaternion.identity);
+    }
+
+    void SpawnBossRanged()
+    {
+        Instantiate(bossRanged, (Vector2)transform.position +
+            new Vector2(Random.Range(-transform.localScale.x,
+            transform.localScale.x + 1), Random.Range(-transform.localScale.y,
+            transform.localScale.y + 1)) / 2, Quaternion.identity);
+    }
+
+    void SpawnBossMelee()
+    {
+        Instantiate(bossMelee, (Vector2)transform.position +
             new Vector2(Random.Range(-transform.localScale.x,
             transform.localScale.x + 1), Random.Range(-transform.localScale.y,
             transform.localScale.y + 1)) / 2, Quaternion.identity);

@@ -1,11 +1,40 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
-public class code_EndCutscene : MonoBehaviour
+namespace TopDownController2D
 {
-    public void EndCutscene(int SceneID)
+    public class code_EndCutscene : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneID);
+        TopDownController2D topDownInput;
+
+        void Awake()
+        {
+            topDownInput = new TopDownController2D();
+        }
+
+        private void Start()
+        {
+            topDownInput.Player.Escape.performed += ctx => { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); };
+        }
+
+        void OnEnable()
+        {
+            topDownInput.Enable();
+        }
+
+        void OnDisable()
+        {
+            topDownInput.Disable();
+        }
+
+        public void EndCutscene(int SceneID)
+        {
+            SceneManager.LoadScene(SceneID);
+        }
+
+        public void EndFCutscene()
+        {
+            Application.Quit();
+        }
     }
 }

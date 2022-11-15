@@ -11,6 +11,7 @@ namespace TopDownController2D
     public class code_Pause : MonoBehaviour
     {
         public static bool isPaused = false;
+
         TopDownController2D topDownInput;
         code_Gameplay gameplay;
 
@@ -47,14 +48,6 @@ namespace TopDownController2D
             gameplay.hudPause.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
-        }
-
-        public void OnReturnMenu(int SceneID)
-        {
-            Time.timeScale = 1f;
-            isPaused = false;
-
-            SceneManager.LoadScene(SceneID);
         }
 
         public void OnLeaveGame()

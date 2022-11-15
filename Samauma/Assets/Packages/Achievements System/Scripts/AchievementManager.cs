@@ -69,4 +69,18 @@ public class AchievementManager : MonoBehaviour
         item.unlocked = true;
         item.RefreshView();
     }
+
+    public void LockAllAchievements()
+    {
+        foreach (Achievement achievement in dataBase.achievements)
+        {
+            PlayerPrefs.DeleteKey(achievement.id);
+        }
+
+        foreach (AchievementItemController controller in achievementItems)
+        {
+            controller.unlocked = false;
+            controller.RefreshView();
+        }
+    }
 }

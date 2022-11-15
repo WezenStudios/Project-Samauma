@@ -9,6 +9,8 @@ public class AchievementNotificationController : MonoBehaviour
     [SerializeField] TMP_Text achievementTitle;
     Animator anim;
 
+    public AudioSource audioNotification;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -18,5 +20,6 @@ public class AchievementNotificationController : MonoBehaviour
     {
         achievementTitle.text = achievement.title;
         anim.SetTrigger("Appear");
+        audioNotification.Play();
     }
 }
