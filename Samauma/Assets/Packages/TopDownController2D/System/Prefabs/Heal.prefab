@@ -102,7 +102,7 @@ MonoBehaviour:
   canBePickupBy:
     serializedVersion: 2
     m_Bits: 256
-  healAmount: 5
+  healAmount: 15
 --- !u!1 &6826026109076764739
 GameObject:
   m_ObjectHideFlags: 0

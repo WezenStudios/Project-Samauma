@@ -32,4 +32,10 @@ public class code_Subtitle : MonoBehaviour
                 obj.SetActive(false);
         }
     }
+
+    public void OpenHTML()
+    {
+        Debug.Log("Site aberto!");
+        Application.OpenURL("WildMountainStudios.html");
+    }
 }
